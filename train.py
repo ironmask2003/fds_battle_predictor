@@ -31,7 +31,7 @@ def main():
     args = parse_args()
     train_path, test_path = gen_path(args.kaggle)
 
-    train_data = load_data(train_path, args.idx, args.n_turns, args.show).pop(4877)
+    train_data = load_data(train_path, args.idx, args.n_turns, args.show)
     test_data = load_data(test_path, args.idx, args.n_turns, args.show_train)
 
     print("Processing training data...")
