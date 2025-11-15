@@ -10,7 +10,7 @@ from extract_features import *
 
 def parse_args():
     """
-    Funzione per il parsing degli argomenti da riga di comando.
+    Function for parsing command line arguments.
 
     Returns:
         - args: parsed arguments
@@ -59,7 +59,7 @@ def main():
 
     X_test = test_df[features]
 
-    # Suddividiamo i dati train in train + validation
+    # Split the training data into train + validation
     X_train_sub, X_val, y_train_sub, y_val = train_test_split(
         X_train, y_train, test_size=0.1, random_state=42
     )
@@ -67,11 +67,11 @@ def main():
     model = LogisticRegression(random_state=42, max_iter=1000)
     model.fit(X_train, y_train)
 
-    # Predizione sulla validation
+    # Predictions on the validation set
     val_preds = model.predict(X_val)
     train_preds = model.predict(X_train_sub)
 
-    # Calcoliamo accuracy
+    # Compute accuracy
     accuracy_train = accuracy_score(y_train_sub, train_preds)
     print(f"Train Accuracy: {accuracy_train:.4f}")
 
@@ -83,10 +83,10 @@ def main():
         'y_pred': val_preds
     })
 
-    # Filtriamo solo gli errori
+    # Filter only the errors
     errors = val_results[val_results['y_true'] != val_results['y_pred']]
 
-    print(f"Numero di errori: {len(errors)}")
+    print(f"Number of errors: {len(errors)}")
     print(errors.head())
 
     create_submission(model, X_test, test_df)
