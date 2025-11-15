@@ -89,9 +89,9 @@ def main():
     print(f"Numero di errori: {len(errors)}")
     print(errors.head())
 
-    cerate_submission(model, X_test, test_df)
+    create_submission(model, X_test, test_df)
 
-def cerate_submission(model, X_test, test_df):
+def create_submission(model, X_test, test_df):
     # Make predictions on the test data
     print("Generating predictions on the test set...")
     test_predictions = model.predict(X_test)
